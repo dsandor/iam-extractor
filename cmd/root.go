@@ -175,7 +175,8 @@ func (ie *IAMExtractor) getCfnYamlSnippet(roleDescription string, yamlAssumedRol
 }
 
 // extractIamRole this function is the main entrypoint for extracting the role and handling stdio or file output.
-func (ie *IAMExtractor) extractIamRole(iamClient IamApi) {
+// returns a string for the unit tests
+func (ie *IAMExtractor) extractIamRole(iamClient IamApi) string {
 	roleOutput := ie.getRole(iamClient)
 
 	roleInlinePoliciesOutput := ie.getInlinePolicies(iamClient)
@@ -208,6 +209,8 @@ func (ie *IAMExtractor) extractIamRole(iamClient IamApi) {
 	if ie.FileName != "" {
 		os.WriteFile(ie.FileName, []byte(cfn), 0644)
 	}
+
+	return cfn
 }
 
 // indent separates string into lines, buffers the line with n spaces and then reassembles into string. (split/join)
