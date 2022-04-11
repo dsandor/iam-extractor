@@ -198,7 +198,7 @@ func (ie *IAMExtractor) extractIamRole(iamClient IamApi) string {
 	if roleOutput.Role.Description != nil {
 		roleDescription = *roleOutput.Role.Description
 	} else {
-		roleDescription = ""
+		roleDescription = fmt.Sprintf("IAM Role extracted from %s", ie.RoleName)
 	}
 
 	cfn := ie.getCfnYamlSnippet(
