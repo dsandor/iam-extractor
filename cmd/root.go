@@ -194,8 +194,15 @@ func (ie *IAMExtractor) extractIamRole(iamClient IamApi) string {
 
 	yamlAssumedRolePolicyDoc, _ := yaml.JSONToYAML([]byte(jsonAssumedRolePolicyDoc))
 
+	var roleDescription string
+	if roleOutput.Role.Description != nil {
+		roleDescription = *roleOutput.Role.Description
+	} else {
+		roleDescription = ""
+	}
+
 	cfn := ie.getCfnYamlSnippet(
-		*roleOutput.Role.Description,
+		roleDescription,
 		string(yamlAssumedRolePolicyDoc),
 		*roleOutput.Role.MaxSessionDuration,
 		*roleOutput.Role.Path,
