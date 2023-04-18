@@ -2,6 +2,20 @@
 
 Command Line tool that will extract an existing AWS IAM Role and output a YAML snippet that can be cut and pasted into a CloudFormation or SAM template.
 
+## Build
+
+Using a recent version of golang, build with:
+
+```sh
+make
+```
+
+Install locally in `$GOPATH/bin`:
+
+```sh
+make install
+```
+
 ## Usage
 
 ```sh

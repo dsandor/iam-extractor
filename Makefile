@@ -26,6 +26,9 @@ test-coverage: ## Run tests with coverage
 build: dep ## Build the binary file
 	@go build -o build/app .
 
+install:                        ## Install pmm-admin binary.
+	@go install ./...
+
 clean: ## Remove previous build
 	@rm -f $(PROJECT_NAME)/build
 
